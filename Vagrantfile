@@ -121,10 +121,12 @@ config.vm.define "server" do |server|
   #config.vm.box = 'centos/8'
   config.vm.box = 'almalinux/8'
   #config.vm.box_version = "2011.0"
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
   server.vm.host_name = 'server'
   server.vm.network :private_network, ip: "192.168.56.4"
 
   server.vm.provider "virtualbox" do |vb|
+    vb.gui = true
     vb.memory = "1024"
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
